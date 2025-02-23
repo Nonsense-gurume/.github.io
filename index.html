@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的个人主页</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<!-- 添加交互效果(在body之前) -->
+<script>
+    // 平滑滚动效果
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+    
+    // 导航栏激活状态
+    window.addEventListener('scroll', () => {
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('nav a');
+        
+        let current = '';
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            if (pageYOffset >= sectionTop - 100) {
+                current = section.getAttribute('id');
+            }
+        });
+    
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href').includes(current)) {
+                link.classList.add('active');
+            }
+        });
+    });
+</script>
+
+<body>
+    <nav>
+        <ul>
+            <li><a href="#home">首页</a></li>
+            <li><a href="#about">关于我</a></li>
+            <li><a href="#skills">技能</a></li>
+            <li><a href="#projects">项目</a></li>
+            <li><a href="#contact">联系</a></li>
+        </ul>
+    </nav>
+    
+    <!-- 首页部分 -->
+    <section id="home">
+        <div class="hero">
+            <img src="avatar.jpg" alt="我的头像" class="avatar">
+            <h1>你好，我是张三</h1>
+            <p>前端开发者 | 平面设计爱好者</p>
+        </div>
+    </section>
+
+    <!-- 关于我部分 -->
+    <section id="about">
+        <h2>关于我</h2>
+        <p>毕业于XX大学计算机科学专业，拥有3年前端开发经验...</p>
+        <div class="timeline">
+        <!-- 时间线内容 -->
+    </div>
+    </section>  
+
+
+    <!-- 其他内容区 -->
+</body>
+
+</html>
